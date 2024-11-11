@@ -21,7 +21,7 @@ class PromoProcessor(ABC):
         cls.logger = logging.getLogger(cls.__name__)
 
     @classmethod
-    def apply_store_brands(cls, item: Dict[str, Any]) -> Dict[str, Any]:
+    def apply_store_brands(cls, item: Union[Dict[str, Any], List[Dict[str, Any]]) -> Dict[str, Any]:
         store_brands = {
             'marianos': ["Private Selection", "Kroger", "Simple Truth", "Simple Truth Organic"],
             'target': ["Deal Worthy", "Good & Gather", "Market Pantry", "Favorite Day", "Kindfull", "Smartly", "Up & Up"],
