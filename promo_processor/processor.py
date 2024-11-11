@@ -21,7 +21,7 @@ class PromoProcessor(ABC):
         cls.logger = logging.getLogger(cls.__name__)
 
     @classmethod
-    def apply_store_brands(cls, item: Union[Dict[str, Any], List[Dict[str, Any]]) -> Dict[str, Any]:
+    def apply_store_brands(cls, item: Dict[str, Any]) -> Dict[str, Any]:
         store_brands = {
             'marianos': ["Private Selection", "Kroger", "Simple Truth", "Simple Truth Organic"],
             'target': ["Deal Worthy", "Good & Gather", "Market Pantry", "Favorite Day", "Kindfull", "Smartly", "Up & Up"],
@@ -51,7 +51,7 @@ class PromoProcessor(ABC):
         pass
 
     @classmethod
-    def process_item(cls, item_data: Dict[str, Any]) -> T:
+    def process_item(cls, item_data: Union[Dict[str, Any], List[Dict[str, Any]])) -> T:
         """Process a list of items or a single item."""
         if isinstance(item_data, list):
             cls.results.extend([cls.apply_store_brands(cls.process_single_item(item)) for item in item_data])
